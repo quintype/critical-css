@@ -6,7 +6,8 @@
   "dependencies": {
     "body-parser": "^1.15.1",
     "critical": "^0.7.3",
-    "express": "^4.13.4"
+    "express": "^4.13.4",
+    "lodash": "^4.13.1"
   },
   "devDependencies": {},
   "scripts": {
