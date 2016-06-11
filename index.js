@@ -2,6 +2,7 @@ var express = require('express');
 var bodyParser = require('body-parser');
 var critical = require('critical');
 var _ = require("lodash");
+var cluster = require("cluster");
 
 var app = express();
 var port = 8080;
@@ -41,6 +42,17 @@ app.post('/api/critical', (req, res) => {
   });
 });
 
-app.listen(port, () => {
-  console.log("Listening on port 8080!");
-});
+if (cluster.isMaster) {
+  const numCPUs = require('os').cpus().length;
+
+  for(var i = 0; i < numCPUs; i++)
+    cluster.fork();
+
+  cluster.on('exit', (worker, code, signal) => {
+    cluster.fork();
+  });
+} else {
+  app.listen(port, () => {
+    console.log("Listening on port 8080!");
+  });
+}
