@@ -32,7 +32,8 @@ app.post('/api/critical', (req, res) => {
     }],
     minify: true
   }, options)).then((criticalCss) => {
-    res.send(criticalCss);
+    res.header("Content-Type", "text/css")
+    res.end(criticalCss);
   });
 });
 
