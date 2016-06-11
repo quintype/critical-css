@@ -34,6 +34,10 @@ app.post('/api/critical', (req, res) => {
   }, options)).then((criticalCss) => {
     res.header("Content-Type", "text/css")
     res.end(criticalCss);
+  }).catch((error) => {
+    res.status(500);
+    res.header("Content-Type", "application/json");
+    res.end('{"error": {"message": "Something Went Wrong"}}');
   });
 });
 
