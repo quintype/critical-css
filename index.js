@@ -10,6 +10,10 @@ var port = process.env.PORT || 8080;
 app.use(bodyParser.text({type: 'text/html'}));
 app.use(bodyParser.json({type: 'application/json'}));
 
+app.get("/", (req, res) => {
+  res.end("Hello");
+});
+
 app.post('/api/critical', (req, res) => {
   var options = req.body;
   if(req.headers["content-type"] == "text/html")
