@@ -21,7 +21,7 @@ app.post('/api/critical', (req, res) => {
 
   options = _.chain({})
     .extend(options, req.query)
-    .pick(["html", "url"])
+    .pick(["html", "src"])
     .value();
 
   critical.generate(_.extend({
