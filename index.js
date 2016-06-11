@@ -5,7 +5,7 @@ var _ = require("lodash");
 var cluster = require("cluster");
 
 var app = express();
-var port = 8080;
+var port = process.env.PORT || 8080;
 
 app.use(bodyParser.text({type: 'text/html'}));
 app.use(bodyParser.json({type: 'application/json'}));
