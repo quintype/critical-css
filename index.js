@@ -20,8 +20,16 @@ app.post('/api/critical', (req, res) => {
     .value();
 
   critical.generate(_.extend({
-    width: 1300,
-    height: 900,
+    dimensions: [{
+      height: 568,
+      width: 320
+    }, {
+      height: 1024,
+      width: 768
+    }, {
+      height: 900,
+      width: 1440
+    }],
     minify: true
   }, options)).then((criticalCss) => {
     res.send(criticalCss);
